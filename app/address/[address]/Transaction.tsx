@@ -60,7 +60,7 @@ export function Transaction({
   }, [transaction]);
 
   const accountBalanceChanged = useMemo(() => {
-    if (transaction.type !== "COMPRESSED_NFT_MINT") {
+    if (transaction.type === "COMPRESSED_NFT_MINT") {
       return true;
     }
 
