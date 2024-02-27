@@ -5,7 +5,7 @@ async function getAccountTransactions(address: string) {
   const api_key = rpc_url.split("?api-key=")[1];
   const api_url = `https://api.helius.xyz/v0/addresses/${address}/transactions?api-key=${api_key}&limit=25`;
 
-  const response = await fetch(api_url);
+  const response = await fetch(api_url, { next: { revalidate: 10 } });
   const result = await response.json();
 
   return result;
