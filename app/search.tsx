@@ -23,10 +23,10 @@ export default function Search() {
   };
 
   return (
-    <div className="flex gap-2 relative w-64">
+    <div className="flex gap-2 relative w-full">
       <input
         className="w-full p-2 border border-gray-300 rounded-full text-xs text-center"
-        placeholder="search for a txn"
+        placeholder="search for a txn/addr"
         onKeyDown={onType}
         onChange={(e) => setQ(e.target.value)}
         value={q}
