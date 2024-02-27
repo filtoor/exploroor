@@ -20,7 +20,9 @@ async function getNFTImage(id: string) {
   }
 
   // get any redirect
-  const imageResponse = await fetch(result.result.content.links.image);
+  const imageResponse = await fetch(result.result.content.links.image, {
+    cache: "no-store",
+  });
   return imageResponse.url;
 }
 
