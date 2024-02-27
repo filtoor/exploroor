@@ -1,7 +1,8 @@
 import { Suspense } from "react";
 import AccountBalance from "./AccountBalance";
 import AccountTransactions from "./AccountTransactions";
-import { resolveAddress } from "@/app/helpers";
+import { resolveAddress, shortenAddress } from "@/app/helpers";
+import CopyButton from "@/app/transaction/[transaction]/CopyButton";
 
 export default async function Address({
   params,
@@ -14,14 +15,17 @@ export default async function Address({
     <div className="flex flex-col gap-4 mb-16">
       <div className="flex flex-col gap-1 w-max">
         <span className="font-bold">Address: </span>
-        <span>
-          {params.address}
-          {!params.address.endsWith(".sol") &&
-            address !== params.address &&
-            ".sol"}
-        </span>
+        <div className="flex gap-2 items-center">
+          <span>{shortenAddress(address)}</span>
+          <CopyButton text={address} />
+        </div>
         {address !== params.address && (
-          <span className="italic">{address}</span>
+          <span className="italic">
+            {params.address}
+            {!params.address.endsWith(".sol") &&
+              address !== params.address &&
+              ".sol"}
+          </span>
         )}
       </div>
 

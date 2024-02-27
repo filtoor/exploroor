@@ -2,9 +2,11 @@ import {
   humanReadableMint,
   humanReadableType,
   lamportsToSol,
+  shortenAddress,
 } from "@/app/helpers";
 import NFT from "./NFT";
 import { Suspense, useMemo } from "react";
+import { redirect } from "next/navigation";
 
 export interface TransactionType {
   signature: string;
@@ -84,7 +86,14 @@ export function Transaction({
 
   return (
     <div className="flex flex-col shadow-md rounded-lg w-full p-4 gap-2 bg-zinc-800">
-      <div className="flex w-full justify-between text-xs">
+      <a
+        href={`/transaction/${transaction.signature}`}
+        className="hover:underline font-bold"
+      >
+        {shortenAddress(transaction.signature)}
+      </a>
+
+      <div className="flex w-full justify-between text-xs fon">
         <span className="font-bold">{humanReadableType(transaction.type)}</span>
 
         <span>{new Date(transaction.timestamp * 1000).toLocaleString()}</span>
@@ -102,7 +111,9 @@ export function Transaction({
               }
               key={event.assetId}
             >
-              <NFT id={event.assetId} key={event.assetId} />
+              <div className="w-16 h-max" key={event.assetId}>
+                <NFT id={event.assetId} />
+              </div>
             </Suspense>
           ))}
 
@@ -117,7 +128,7 @@ export function Transaction({
                 <span key={token.mint}>
                   {Number.parseInt(token.rawTokenAmount.tokenAmount) /
                     10 ** token.rawTokenAmount.decimals}{" "}
-                  {humanReadableMint(token.mint)}
+                  {humanReadableMint(token.mint).symbol}
                 </span>
               ))}
               {tokenAccountUpdate.map((update) => (
@@ -128,7 +139,7 @@ export function Transaction({
                       <span key={token.mint}>
                         {Number.parseInt(token.rawTokenAmount.tokenAmount) /
                           10 ** token.rawTokenAmount.decimals}{" "}
-                        {humanReadableMint(token.mint)}
+                        {humanReadableMint(token.mint).symbol}
                       </span>
                     ))}
                 </span>

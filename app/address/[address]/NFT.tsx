@@ -55,14 +55,10 @@ export default async function NFT({ id }: { id: string }) {
 
   return (
     <div className="flex flex-col gap-1 relative">
-      <img
-        src={image}
-        alt={`NFT #${id}`}
-        className="rounded-md shadow-md h-16 w-16"
-      />
+      <img src={image} alt={`NFT #${id}`} className="rounded-md shadow-md" />
 
       {classification === "spam" && (
-        <span className="text-xs text-red-800 absolute w-16 text-center top-0 bg-red-200 h-16 opacity-70 rounded-md hover:opacity-0 transition-all pt-3 select-none">
+        <span className="text-red-800 absolute w-full text-center top-0 bg-red-200 h-full opacity-70 rounded-md hover:opacity-0 transition-all pt-[15%] select-none">
           🚫 Likely Spam
         </span>
       )}

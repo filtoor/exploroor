@@ -34,7 +34,7 @@ export default function Search() {
 
       <button
         onClick={onSearch}
-        className="absolute right-0 p-1 m-1 italic text-xs hover:bg-zinc-900 hover:border-zinc-600 rounded-full border border-transparent transition-all"
+        className="absolute right-0 p-1 m-1 italic text-xs hover:bg-zinc-900 hover:border-zinc-600 rounded-full border border-transparent transition-all bg-zinc-800"
       >
         search
       </button>
