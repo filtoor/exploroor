@@ -40,3 +40,14 @@ export async function humanReadableType(t: string) {
       return t;
   }
 }
+
+export async function humanReadableMint(m: string) {
+  switch (m) {
+    case "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v":
+      return "USDC";
+    case "So11111111111111111111111111111111111111112":
+      return "SOL";
+    default:
+      return m;
+  }
+}

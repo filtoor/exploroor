@@ -13,7 +13,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="text-black bg-white">{children}</body>
+      <body className="text-black bg-white">
+        {" "}
+        <div className="flex justify-center">{children}</div>
+      </body>
     </html>
   );
 }

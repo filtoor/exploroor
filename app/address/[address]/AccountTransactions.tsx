@@ -3,7 +3,7 @@ import { Transaction, TransactionType } from "./Transaction";
 async function getAccountTransactions(address: string) {
   const rpc_url = process.env.RPC_URL!;
   const api_key = rpc_url.split("?api-key=")[1];
-  const api_url = `https://api.helius.xyz/v0/addresses/${address}/transactions?api-key=${api_key}`;
+  const api_url = `https://api.helius.xyz/v0/addresses/${address}/transactions?api-key=${api_key}&limit=25`;
 
   const response = await fetch(api_url);
   const result = await response.json();
@@ -25,7 +25,11 @@ export default async function AccountTransactions({
   return (
     <div className="flex flex-col gap-4">
       {accountTransactions.map((transaction: TransactionType) => (
-        <Transaction transaction={transaction} key={transaction.signature} />
+        <Transaction
+          transaction={transaction}
+          account={account}
+          key={transaction.signature}
+        />
       ))}
     </div>
   );
