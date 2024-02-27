@@ -128,12 +128,25 @@ export function Transaction({
         {accountUpdate && (
           <div className="text-xs flex flex-col gap-1">
             {accountUpdate.nativeBalanceChange !== 0 && (
-              <span>
+              <span
+                className={
+                  accountUpdate.nativeBalanceChange > 0
+                    ? "text-green-500"
+                    : "text-red-500"
+                }
+              >
                 {lamportsToSol(accountUpdate.nativeBalanceChange)} SOL
               </span>
             )}
             {accountUpdate.tokenBalanceChanges.map((token) => (
-              <span key={token.mint}>
+              <span
+                key={token.mint}
+                className={
+                  Number.parseInt(token.rawTokenAmount.tokenAmount) > 0
+                    ? "text-green-500"
+                    : "text-red-500"
+                }
+              >
                 {Number.parseInt(token.rawTokenAmount.tokenAmount) /
                   10 ** token.rawTokenAmount.decimals}{" "}
                 {humanReadableMint(token.mint).symbol}
@@ -144,7 +157,14 @@ export function Transaction({
                 {update.tokenBalanceChanges
                   .filter((token) => token.userAccount === account)
                   .map((token) => (
-                    <span key={token.mint}>
+                    <span
+                      key={token.mint}
+                      className={
+                        Number.parseInt(token.rawTokenAmount.tokenAmount) > 0
+                          ? "text-green-500"
+                          : "text-red-500"
+                      }
+                    >
                       {Number.parseInt(token.rawTokenAmount.tokenAmount) /
                         10 ** token.rawTokenAmount.decimals}{" "}
                       {humanReadableMint(token.mint).symbol}
