@@ -60,7 +60,7 @@ export function Transaction({
   }, [transaction]);
 
   const accountBalanceChanged = useMemo(() => {
-    if (transaction.type === "COMPRESSED_NFT_MINT") {
+    if (transaction.type !== "COMPRESSED_NFT_MINT") {
       return true;
     }
 
@@ -97,8 +97,12 @@ export function Transaction({
           {transaction.events.compressed?.map((event) => (
             <Suspense
               fallback={
-                <div className="w-16 h-16 bg-gray-200 animate-pulse rounded-md" />
+                <div
+                  className="w-16 h-16 bg-gray-200 animate-pulse rounded-md"
+                  key={event.assetId}
+                />
               }
+              key={event.assetId}
             >
               <NFT id={event.assetId} key={event.assetId} />
             </Suspense>
