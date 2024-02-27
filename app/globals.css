@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* fuck you i'll use whatever font i want */
 * {
-  font-family: "Comic Sans MS"
+  font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;
 }
