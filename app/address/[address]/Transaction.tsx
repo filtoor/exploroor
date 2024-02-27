@@ -83,7 +83,7 @@ export function Transaction({
   }
 
   return (
-    <div className="flex flex-col shadow-md rounded-lg w-full p-4 gap-2">
+    <div className="flex flex-col shadow-md rounded-lg w-full p-4 gap-2 bg-zinc-800">
       <div className="flex w-full justify-between text-xs">
         <span className="font-bold">{humanReadableType(transaction.type)}</span>
 

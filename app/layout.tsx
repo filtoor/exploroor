@@ -13,8 +13,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="text-black bg-white">
+      <body className="text-white bg-zinc-900">
         <div className="flex justify-center">{children}</div>
+        <span className="w-full text-center text-xs block mt-[-24px]">
+          made with ❤️ by the folks at{" "}
+          <a href="https://filtoor.xyz" target="_blank" className="underline">
+            filtoor
+          </a>
+        </span>
       </body>
     </html>
   );

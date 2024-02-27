@@ -26,5 +26,7 @@ export default async function AccountBalance({ account }: { account: string }) {
     return <span>Error</span>;
   }
 
-  return <span>{lamportsToSol(accountBalance.result.value.lamports)} SOL</span>;
+  return (
+    <span>{lamportsToSol(accountBalance.result.value?.lamports ?? 0)} SOL</span>
+  );
 }

@@ -25,7 +25,7 @@ export default function Search() {
   return (
     <div className="flex gap-2 relative w-full">
       <input
-        className="w-full p-2 border border-gray-300 rounded-full text-xs text-center"
+        className="w-full p-2 border border-zinc-600 rounded-full text-xs text-center bg-zinc-800"
         placeholder="search for a txn/addr"
         onKeyDown={onType}
         onChange={(e) => setQ(e.target.value)}
@@ -34,7 +34,7 @@ export default function Search() {
 
       <button
         onClick={onSearch}
-        className="absolute right-0 p-1 m-1 italic text-xs hover:bg-gray-100 hover:border-gray-300 rounded-full border border-transparent transition-all"
+        className="absolute right-0 p-1 m-1 italic text-xs hover:bg-zinc-900 hover:border-zinc-600 rounded-full border border-transparent transition-all"
       >
         search
       </button>

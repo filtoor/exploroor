@@ -11,10 +11,15 @@ export default async function Address({
   const address = await resolveAddress(params.address);
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 mb-16">
       <div className="flex flex-col gap-1 w-max">
         <span className="font-bold">Address: </span>
-        <span>{params.address}</span>
+        <span>
+          {params.address}
+          {!params.address.endsWith(".sol") &&
+            address !== params.address &&
+            ".sol"}
+        </span>
         {address !== params.address && (
           <span className="italic">{address}</span>
         )}
