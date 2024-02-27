@@ -1,3 +1,4 @@
+import { TransactionType } from "./address/[address]/Transaction";
 import JUP_ADDRESSES from "./jup_addresses.json";
 
 export function lamportsToSol(lamports: number) {
@@ -70,10 +71,12 @@ export function humanReadableMint(m: string) {
   return { name: "Unknown", address: m, symbol: "Unknown", decimals: 1 };
 }
 
-export function formatTransactionDescription(
-  description: string,
-  addresses: string[]
-) {
+export function formatTransactionDescription(transaction: TransactionType) {
+  const description = transaction.description;
+  const addresses = transaction.accountData.flatMap((ad) => [
+    ad.account,
+    ...ad.tokenBalanceChanges.flatMap((tbc) => tbc.userAccount),
+  ]);
   const words = description.split(" ");
   const jsx = [];
   for (let i = 0; i < words.length; i++) {

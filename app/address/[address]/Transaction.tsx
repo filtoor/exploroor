@@ -1,4 +1,5 @@
 import {
+  formatTransactionDescription,
   humanReadableMint,
   humanReadableType,
   lamportsToSol,
@@ -99,8 +100,8 @@ export function Transaction({
         <span>{new Date(transaction.timestamp * 1000).toLocaleString()}</span>
       </div>
 
-      <div className="flex">
-        <div className="flex gap-1">
+      <div className="flex flex-col gap-2">
+        <div className="flex gap-2 items-center">
           {transaction.events.compressed?.map((event) => (
             <Suspense
               fallback={
@@ -117,36 +118,42 @@ export function Transaction({
             </Suspense>
           ))}
 
-          {accountUpdate && (
-            <div className="text-xs flex flex-col gap-1">
-              {accountUpdate.nativeBalanceChange !== 0 && (
-                <span>
-                  {lamportsToSol(accountUpdate.nativeBalanceChange)} SOL
-                </span>
-              )}
-              {accountUpdate.tokenBalanceChanges.map((token) => (
-                <span key={token.mint}>
-                  {Number.parseInt(token.rawTokenAmount.tokenAmount) /
-                    10 ** token.rawTokenAmount.decimals}{" "}
-                  {humanReadableMint(token.mint).symbol}
-                </span>
-              ))}
-              {tokenAccountUpdate.map((update) => (
-                <span key={update.account}>
-                  {update.tokenBalanceChanges
-                    .filter((token) => token.userAccount === account)
-                    .map((token) => (
-                      <span key={token.mint}>
-                        {Number.parseInt(token.rawTokenAmount.tokenAmount) /
-                          10 ** token.rawTokenAmount.decimals}{" "}
-                        {humanReadableMint(token.mint).symbol}
-                      </span>
-                    ))}
-                </span>
-              ))}
-            </div>
+          {transaction.description && (
+            <span className="text-xs">
+              {formatTransactionDescription(transaction)}
+            </span>
           )}
         </div>
+
+        {accountUpdate && (
+          <div className="text-xs flex flex-col gap-1">
+            {accountUpdate.nativeBalanceChange !== 0 && (
+              <span>
+                {lamportsToSol(accountUpdate.nativeBalanceChange)} SOL
+              </span>
+            )}
+            {accountUpdate.tokenBalanceChanges.map((token) => (
+              <span key={token.mint}>
+                {Number.parseInt(token.rawTokenAmount.tokenAmount) /
+                  10 ** token.rawTokenAmount.decimals}{" "}
+                {humanReadableMint(token.mint).symbol}
+              </span>
+            ))}
+            {tokenAccountUpdate.map((update) => (
+              <span key={update.account}>
+                {update.tokenBalanceChanges
+                  .filter((token) => token.userAccount === account)
+                  .map((token) => (
+                    <span key={token.mint}>
+                      {Number.parseInt(token.rawTokenAmount.tokenAmount) /
+                        10 ** token.rawTokenAmount.decimals}{" "}
+                      {humanReadableMint(token.mint).symbol}
+                    </span>
+                  ))}
+              </span>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

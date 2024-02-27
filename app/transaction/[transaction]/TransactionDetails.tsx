@@ -47,13 +47,7 @@ export default async function TransactionDetails({ id }: { id: string }) {
       </div>
 
       <span className="text-sm mb-4">
-        {formatTransactionDescription(
-          transaction.description,
-          transaction.accountData.flatMap((ad) => [
-            ad.account,
-            ...ad.tokenBalanceChanges.flatMap((tbc) => tbc.userAccount),
-          ])
-        )}
+        {formatTransactionDescription(transaction)}
       </span>
 
       {transaction.nativeTransfers.length > 0 && (
