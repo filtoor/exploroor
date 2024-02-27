@@ -12,7 +12,7 @@ async function getAccountBalance(address: string) {
       method: "getAccountInfo",
       params: [address, { encoding: "base58" }],
     }),
-    next: { revalidate: 10 },
+    next: { revalidate: 1 },
   });
 
   const result = await response.json();
