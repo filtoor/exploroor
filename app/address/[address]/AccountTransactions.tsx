@@ -1,4 +1,3 @@
-import { lamportsToSol } from "@/app/helpers";
 import { Transaction, TransactionType } from "./Transaction";
 
 async function getAccountTransactions(address: string) {
@@ -9,7 +8,6 @@ async function getAccountTransactions(address: string) {
   const response = await fetch(api_url);
   const result = await response.json();
 
-  console.log(result);
   return result;
 }
 
